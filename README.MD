@@ -3,7 +3,7 @@
 ## Installation
 Clone this project
 ```
-git clone LINKHERE
+git clone https://github.com/Wrightlab1/ZoomdeviceOauthdemo.git
 ```
 Install dependencies
 ```
@@ -12,6 +12,7 @@ pip install -r requirements.txt
 
 ## Usage
 This project is a demo of the Device oauth implimentation
+You will need to create a SDK app on the Zoom marketplace. This app should have the user:read scope and must be enabled for device Oauth
 
 You will need to create a ```.env``` file  in the root of the project with the following
 ```
