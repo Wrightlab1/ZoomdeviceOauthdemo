@@ -21,6 +21,9 @@ CLIENTSECRET = ""
 ```
 LOGGING_LEVEL must be an  upper-case string and can be set to INFO, DEBUG, or WARNING
 
+To generate a qrCode to scan from another device set ```qr=True``` in ```app.py```
+Otherwise set to ```False``` to open the verification URI in the local browser directly
+
 ## Logging
 A logfile is generate for you in ``` ./logs/log.log```
 This logfile will contain all of the information you need to debug your Zoom REST API requests
