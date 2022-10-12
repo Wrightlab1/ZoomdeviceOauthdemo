@@ -1,6 +1,7 @@
 import json
+from termcolor import cprint
 
 
 def printJSON(data):
     parsed = json.loads(data)
-    print(json.dumps(parsed, indent=4))
+    cprint(json.dumps(parsed, indent=4), "blue")
