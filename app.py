@@ -15,7 +15,7 @@ from glob import glob
 import urllib
 
 # Set this to True if you want to use a qr code
-qr = True
+qr = False
 
 # Title
 f = Figlet(font='big')
@@ -122,6 +122,7 @@ def oauth_demo():
     <title></title>
 </head>
 <body>
+<h1 style="text-align:center">Zoom Device Oauth Demo</h1>
 <<template>>
 </body>
 </html>"""
@@ -148,7 +149,8 @@ def oauth_demo():
     get_user(token)
     input("Press Enter to continue...")
     get_users_zak(token)
-    cleanup()
+    if qr == True:
+        cleanup()
 
 
 oauth_demo()
