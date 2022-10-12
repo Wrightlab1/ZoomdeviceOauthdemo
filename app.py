@@ -14,9 +14,12 @@ import qrcode.image.svg
 from glob import glob
 import urllib
 
+# Set this to True if you want to use a qr code
 qr = True
+
+# Title
 f = Figlet(font='big')
-print(f.renderText('Ford Demo'))
+print(f.renderText('OAuth Demo'))
 
 # auth data for getting server to server OAuth Token requires appropriate scopes
 load_dotenv()
