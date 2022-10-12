@@ -1,4 +1,4 @@
-# PYTHON ZOOM REST API SCRIPT TEMPLATE
+# PYTHON Device OAuth Demo
 
 ## Installation
 Clone this project
