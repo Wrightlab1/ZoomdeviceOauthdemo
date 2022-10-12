@@ -9,7 +9,12 @@ import os
 import base64
 from termcolor import colored, cprint
 from pyfiglet import Figlet
+import qrcode
+import qrcode.image.svg
+from glob import glob
+import urllib
 
+qr = True
 f = Figlet(font='big')
 print(f.renderText('Ford Demo'))
 
@@ -83,19 +88,64 @@ def get_users_zak(access_token):
     printJSON(response)
 
 
+def load(fill=0):
+    template = ""
+    img = [i for i in glob("*.svg")]
+    for i in img:
+        if fill:
+            template += f"<center><img src='{i}' style='width:100%; height:100%'></center>"
+        else:
+            template += f"<center><img src='{i}'></center>"
+
+    return template
+
+
+def cleanup():
+    logging.info("cleaning up from last session")
+    # delete svg file
+    os.remove("qr.svg")
+    # delete html doc
+    os.remove("loader.html")
+
+
 def oauth_demo():
+    html = """<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<style>
+</style>
+    <title></title>
+</head>
+<body>
+<<template>>
+</body>
+</html>"""
     logging.info("Starting Demo...")
     cprint("Starting Demo", "yellow")
     data = get_verification_uri()
     v_uri = data[0]
     device_code = data[1]
-    webbrowser.open_new(v_uri)
+    if qr == True:
+        factory = qrcode.image.svg.SvgImage
+        img = qrcode.make(v_uri, image_factory=factory)
+        type(img)  # qrcode.image.pil.PilImage
+        img.save("qr.svg")
+        html = html.replace("<<template>>", load(fill=0))
+        with open("loader.html", "w") as file:
+            file.write(html)
+            url = "file:// + /Users/JeremyWright/Documents/Projects/Python/Ford_Demo/device_oauth_demo/loader.html"
+            webbrowser.open_new(url)
+    else:
+        webbrowser.open_new(v_uri)
     input("Press Enter to continue...")
     token = get_access_token(device_code)
     input("Press Enter to continue...")
     get_user(token)
     input("Press Enter to continue...")
     get_users_zak(token)
+    cleanup()
 
 
 oauth_demo()
