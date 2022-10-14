@@ -19,7 +19,7 @@ qr = True
 
 # Title
 f = Figlet(font='big')
-print(f.renderText('Ford Demo'))
+print(f.renderText('Oauth Demo'))
 
 # auth data for getting server to server OAuth Token requires appropriate scopes
 load_dotenv()
