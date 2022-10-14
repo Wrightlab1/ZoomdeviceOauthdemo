@@ -15,11 +15,11 @@ from glob import glob
 import urllib
 
 # Set this to True if you want to use a qr code
-qr = False
+qr = True
 
 # Title
 f = Figlet(font='big')
-print(f.renderText('OAuth Demo'))
+print(f.renderText('Ford Demo'))
 
 # auth data for getting server to server OAuth Token requires appropriate scopes
 load_dotenv()
@@ -106,9 +106,17 @@ def load(fill=0):
 def cleanup():
     logging.info("cleaning up from last session")
     # delete svg file
-    os.remove("qr.svg")
+    try:
+        os.remove("qr.svg")
+        logging.info("Deleted ./qr.svg")
+    except:
+        loggging.warning("Error deleting svg file during cleanup")
     # delete html doc
-    os.remove("loader.html")
+    try:
+        os.remove("./loader.html")
+        logging.info("Deleted loader.html")
+    except:
+        loggging.warning("Error deleting html file during cleanup")
 
 
 def oauth_demo():
